@@ -1,13 +1,14 @@
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
     <h1> Studying Readings </h1>
     <legend class="border-bottom mb-4"></legend>
     {% if form != None %}
     <form method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
-</form>
+    {{ form|crispy }}
+        <button type="submit" class="btn btn-danger" value="Submit">Analyze</button>
+    </form>
     {% else %}
     {% if language %}
     <h1> Language: </h1>

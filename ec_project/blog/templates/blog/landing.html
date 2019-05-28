@@ -2,6 +2,11 @@
 {% block content %}
     <h1> Algorithms S19 Review Page </h1>
     <legend class="border-bottom mb-4"></legend>
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit">
+</form>
     <p>The goal of this site is to help Rob Hott's 4102 class review for the
       final exam. We have attempted to distill the most import information from
       the textbook readings, lecture notes, and homeworks into one place.

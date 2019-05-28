@@ -4,7 +4,7 @@ from .forms import QueryForm
 import json
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions, ConceptsOptions
-
+from .languages import ISO639_2
 
 def landing(request):
 
@@ -24,19 +24,38 @@ def landing(request):
             username='7bbd9db3-0045-4031-b3ae-37e74060d817',
             password='HJk6qs544aYT')
 
-            form= service.analyze(text=dirty_text,features=Features( keywords=KeywordsOptions(limit=3), concepts=EntitiesOptions(limit=3))).get_result()
+            form= service.analyze(text=dirty_text,features=Features( keywords=KeywordsOptions(limit=3), concepts=ConceptsOptions(limit=3), entities=EntitiesOptions(limit=3))).get_result()
+            lang = form["language"]
+            expanded_lang = ISO639_2[lang]
+            keywords = form["keywords"]
+            words = {}
+            count = 0
+            for keyword in keywords:
+                words[count] = keyword["text"]
+                count = count+1
+            concepts = form["concepts"]
+            concept_links ={}
+            for c in concepts:
+                concept_links[c["text"]] = c["dbpedia_resource"]
+            entities = form["entities"]
+            entities_dict = {}
+            count =0
+            for e in entities:
+                entities_dict[count] = e["text"]
+                count = count+1
+            final_form= {"language":expanded_lang, "keywords":words, "concepts":concept_links, "entities":entities_dict}
             print(form)
                 # process the data in form.cleaned_data as required
                 # ...
                 # redirect to a new URL:
     else:
         form = QueryForm()
-
+        final_form ={'form': form}
         # if a GET (or any other method) we'll create a blank form
 
 
 
-    return render(request, 'blog/landing.html', {'form': form})
+    return render(request, 'blog/landing.html',final_form)
 
 def notes(request):
     return render(request, 'blog/notes.html')

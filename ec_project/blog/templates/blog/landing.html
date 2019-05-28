@@ -2,12 +2,36 @@
 {% block content %}
     <h1> Studying Readings </h1>
     <legend class="border-bottom mb-4"></legend>
+    {% if form != None %}
     <form method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit">
 </form>
-    <p>The goal of this site is to help Rob Hott's 4102 class review for the
-      final exam. We have attempted to distill the most import information from
-      the textbook readings, lecture notes, and homeworks into one place.
+    {% else %}
+    {% if language %}
+    <h1> Language: </h1>
+    {{ language}}
+    {% endif %}
+    {% if keywords %}
+    <h2> Keywords: </h2>
+    {% for k,v in keywords.items %}
+    <ul class="list-group">
+    <li class="list-group-item">{{v}}</li> </ul>
+    {% endfor %}
+    {% endif %}
+    {% if entities %}
+    {% for k,v in entities.items %}
+    <li class="list-group-item">{{v}}</li> </ul>
+    {% endfor %}
+    {% endif %}
+    {% if concepts %}
+    <h3> Themes: </h3>
+    <!-- < class="list-group"> -->
+    {% for k,v in concepts.items %}
+    <a href = {{v}} class="list-group-item">{{k}} </a>
+     {% endfor %}
+    {% endif %}
+    {% endif %}
+
 {% endblock content %}

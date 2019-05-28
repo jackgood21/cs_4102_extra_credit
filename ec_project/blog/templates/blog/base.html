@@ -18,22 +18,22 @@
      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <!------ Include the above in your HEAD tag ---------->
-<title>Algorithms S19 Review</title>
+<title>Jack and Brandie's WebApp</title>
   </head>
   <body>
 
   <header class="site-header">
   <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
     <div class="container">
-      <a class="navbar-brand mr-4" href="{% url 'blog-landing' %}">Algorithms S19</a>
+      <a class="navbar-brand mr-4" href="{% url 'blog-landing' %}">People</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarToggle">
         <div class="navbar-nav mr-auto">
-          <a class="nav-item nav-link" href="{% url 'blog-notes' %}">Notes</a>
-          <a class="nav-item nav-link" href="{% url 'blog-homeworks' %}">Homeworks</a>
-          <a class="nav-item nav-link" href="{% url 'blog-learning' %}">Further learning</a>
+          <a class="nav-item nav-link" href="{% url 'blog-notes' %}">Places</a>
+          <a class="nav-item nav-link" href="{% url 'blog-homeworks' %}">Things</a>
+          <a class="nav-item nav-link" href="{% url 'blog-learning' %}">About</a>
         </div>
         <!-- Navbar Right Side -->
         <div class="navbar-nav">
@@ -47,7 +47,7 @@
   <div class="row">
     <div class="col-md-8">
       {% block content %}{% endblock %}
-  
+
    <!-- Optional JavaScript -->
    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

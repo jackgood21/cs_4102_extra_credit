@@ -33,6 +33,13 @@
     <a href = {{v}} class="list-group-item">{{k}} </a>
      {% endfor %}
     {% endif %}
+    {% if first_sentences %}
+    <h4> Topic Sentences of Paragraphs: </h4>
+    {% for sent in first_sentences %}
+        <li class="list-group-item">{{sent}}</li> </ul>
+    {% endfor %}
     {% endif %}
+    {% endif %}
+
 
 {% endblock content %}

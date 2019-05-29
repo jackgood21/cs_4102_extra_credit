@@ -3,13 +3,13 @@ from django.shortcuts import render
 from .forms import QueryForm
 import json
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
-from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions, ConceptsOptions
+from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions, ConceptsOptions, EmotionOptions
 from .languages import ISO639_2
 from urllib.request import urlopen
 from azure.cognitiveservices.search.imagesearch import ImageSearchAPI
 from msrest.authentication import CognitiveServicesCredentials
 
-def landing(request):
+def home(request):
 
     # if this is a POST request we need to process the form data
     form = {}
@@ -32,29 +32,29 @@ def landing(request):
                 form = service.analyze(text=dirty_text, features=Features(keywords=KeywordsOptions(limit=3),
                                                                           concepts=ConceptsOptions(limit=3),
                                                                           entities=EntitiesOptions(
-                                                                              limit=3))).get_result()
+                                                                              limit=3), emotion=EmotionOptions())).get_result()
             else:
                 form = service.analyze(url=dirty_text, features=Features(keywords=KeywordsOptions(limit=3),
                                                                          concepts=ConceptsOptions(limit=3),
                                                                          entities=EntitiesOptions(
-                                                                             limit=3))).get_result()
+                                                                             limit=3), emotion=EmotionOptions())).get_result()
                 #with urlopen(dirty_text) as dirty_text:
                  #   dirty_text = dirty_text.decode("UTF-8").readlines()
             #print(type(dirty_text))
             #print(dirty_text)
             par = []
             first_sent = []
-            str = ""
+            str1 = ""
             char_counter = 0
             if query_format == "Plaintext":
                 for c in dirty_text:
                     char_counter = char_counter+1
 
                     if c != '\n' and char_counter != len(dirty_text):
-                        str = str + c
+                        str1 = str1 + c
                     else:
-                        par.append(str)
-                        str = ""
+                        par.append(str1)
+                        str1 = ""
                 for p in par:
                     str2 = ""
                     for c in p:
@@ -67,6 +67,14 @@ def landing(request):
             lang = form["language"]
             expanded_lang = ISO639_2[lang]
             keywords = form["keywords"]
+            print(form["emotion"])
+            emotions = form["emotion"]["document"]["emotion"]
+            print ("***")
+            for k,v in emotions.items():
+                if emotions[k] >= 0.10:
+                    emotions[k] = str(v*100)[0:2]+"%"
+                else:
+                    emotions[k] = str(v*100)[0:1]+"%"
             words = {}
             count = 0
             for keyword in keywords:
@@ -77,12 +85,18 @@ def landing(request):
             for c in concepts:
                 concept_links[c["text"]] = c["dbpedia_resource"]
             entities = form["entities"]
-            entities_dict = {}
-            count =0
+            people = []
+            places =[]
+            org =[]
+            print(entities)
             for e in entities:
-                entities_dict[count] = e["text"]
-                count = count+1
-
+                if e["type"] == "Location":
+                    places.append(e["text"])
+                if e["type"] == "Person":
+                    people.append(e["text"])
+                if e["type"] == "Organization":
+                    org.append(e["text"])
+            print(people)
             subscription_key = "97696713541a4d698050fe383f301c93"
             search_term = words[0]
             client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
@@ -96,7 +110,16 @@ def landing(request):
                 image_url.append("")
 
 
-            final_form= {"language":expanded_lang, "keywords":words, "concepts":concept_links, "entities":entities_dict, "first_sentences":first_sent, "image_url":image_url}
+
+            final_form= {"language":expanded_lang,
+                         "keywords":words,
+                         "concepts":concept_links,
+                         "first_sentences":first_sent,
+                         "image_url":image_url,
+                         "emotions":emotions,
+                         "people": people,
+                         "places": places,
+                         "orgs": org}
             print(form)
                 # process the data in form.cleaned_data as required
                 # ...
@@ -108,13 +131,13 @@ def landing(request):
 
 
 
-    return render(request, 'blog/landing.html',final_form)
+    return render(request, 'blog/home.html',final_form)
 
-def notes(request):
-    return render(request, 'blog/notes.html')
+def landing(request):
+    return render(request, 'blog/landing.html')
 
-def homeworks(request):
-    return render(request, 'blog/homeworks.html')
+def contact(request):
+    return render(request, 'blog/contact.html')
 
-def learning(request):
-    return render(request, 'blog/learning.html')
+def about(request):
+    return render(request, 'blog/about.html')

@@ -18,26 +18,25 @@
      <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <!------ Include the above in your HEAD tag ---------->
-<title>Jack and Brandie's WebApp</title>
+<title>Reading Quick</title>
   </head>
   <body>
 
   <header class="site-header">
   <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
     <div class="container">
-      <a class="navbar-brand mr-4" href="{% url 'blog-landing' %}">People</a>
+      <a class="navbar-brand mr-4" href="{% url 'blog-landing' %}">Reading Quick</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarToggle">
         <div class="navbar-nav mr-auto">
-          <a class="nav-item nav-link" href="{% url 'blog-notes' %}">Places</a>
-          <a class="nav-item nav-link" href="{% url 'blog-homeworks' %}">Things</a>
-          <a class="nav-item nav-link" href="{% url 'blog-learning' %}">About</a>
+          <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+          <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
+            <a class="nav-item nav-link" href="{% url 'blog-contact' %}">Contact</a>
         </div>
         <!-- Navbar Right Side -->
         <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">Profile</a
         </div>
       </div>
     </div>

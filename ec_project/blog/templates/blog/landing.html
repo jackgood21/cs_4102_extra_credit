@@ -10,6 +10,9 @@
         <button type="submit" class="btn btn-danger" value="Submit">Analyze</button>
     </form>
     {% else %}
+    {% for image in image_url %}
+    <img src={{image}}>
+    {% endfor %}
     {% if language %}
     <h1> Language: </h1>
     {{ language}}

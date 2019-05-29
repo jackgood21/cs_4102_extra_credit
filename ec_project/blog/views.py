@@ -6,6 +6,8 @@ from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions, ConceptsOptions
 from .languages import ISO639_2
 from urllib.request import urlopen
+from azure.cognitiveservices.search.imagesearch import ImageSearchAPI
+from msrest.authentication import CognitiveServicesCredentials
 
 def landing(request):
 
@@ -80,7 +82,21 @@ def landing(request):
             for e in entities:
                 entities_dict[count] = e["text"]
                 count = count+1
-            final_form= {"language":expanded_lang, "keywords":words, "concepts":concept_links, "entities":entities_dict, "first_sentences":first_sent}
+
+            subscription_key = "97696713541a4d698050fe383f301c93"
+            search_term = words[0]
+            client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
+            image_results = client.images.search(query=search_term)
+
+            image_url = []
+            if image_results.value:
+                first_image_result = image_results.value[0]
+                image_url.append(first_image_result.content_url)
+            else:
+                image_url.append("")
+
+
+            final_form= {"language":expanded_lang, "keywords":words, "concepts":concept_links, "entities":entities_dict, "first_sentences":first_sent, "image_url":image_url}
             print(form)
                 # process the data in form.cleaned_data as required
                 # ...

@@ -131,7 +131,7 @@ def home(request):
 
 
 
-    return render(request, 'blog/home.html',final_form)
+    return render(request, 'blog/results.html',final_form)
 
 
 def contact(request):

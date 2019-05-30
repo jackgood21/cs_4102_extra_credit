@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <h1> Reading Quick </h1>
+    <h1 class="display-4">Reading quick</h1>
     <legend class="border-bottom mb-4"></legend>
     {% if form != None %}
     <form method="post">
@@ -10,56 +10,7 @@
         <button type="submit" class="btn btn-danger" value="Submit">Analyze</button>
     </form>
     {% else %}
-    {% for image in image_url %}
-    <img src={{image}} height="400" width="400">
-    {% endfor %}
-    {% if language %}
-    <h1> Language: </h1>
-    {{ language}}
-    {% endif %}
-    {% if keywords %}
-    <h2> Key Phrases: </h2>
-    {% for k,v in keywords.items %}
-    <ul class="list-group">
-    <li class="list-group-item">{{v}}</li> </ul>
-    {% endfor %}
-    {% endif %}
-
-    {% if people %}
-    <h3> People: </h3>
-    {% for p in people %}
-    <li class="list-group-item">{{p}}</li> </ul>
-    {% endfor %}
-    {% endif %}
-    {% if places %}
-    <h3> Places: </h3>
-    {% for pl in places %}
-    <li class="list-group-item">{{pl}}</li> </ul>
-    {% endfor %}
-    {% endif %}
-    {% if orgs %}
-    <h3> Organizations: </h3>
-    {% for o in orgs %}
-    <li class="list-group-item">{{o}}</li> </ul>
-    {% endfor %}
-    {% endif %}
-    {% if concepts %}
-    <h3> Themes: </h3>
-    <!-- < class="list-group"> -->
-    {% for k,v in concepts.items %}
-    <a href = {{v}} class="list-group-item">{{k}} </a>
-     {% endfor %}
-    {% endif %}
-    {% if first_sentences %}
-    <h4> Topic Sentences of Paragraphs: </h4>
-    {% for sent in first_sentences %}
-        <li class="list-group-item">{{sent}}</li> </ul>
-    {% endfor %}
-    {% endif %}
-    <h4> Emotion: </h4>
-     {% for k, v in emotions.items %}
-        <li class="list-group-item">{{k}} : {{v}}</li> </ul>
-    {% endfor %}
+    {% block content2 %}{% endblock content2 %}
 
     {% endif %}
 

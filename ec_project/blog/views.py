@@ -133,8 +133,6 @@ def home(request):
 
     return render(request, 'blog/home.html',final_form)
 
-def landing(request):
-    return render(request, 'blog/landing.html')
 
 def contact(request):
     return render(request, 'blog/contact.html')

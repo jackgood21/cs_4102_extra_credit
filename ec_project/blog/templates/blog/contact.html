@@ -1,16 +1,61 @@
 {% extends "blog/base.html" %}
 {% block content %}
     <h1> Contact Us </h1>
-    <h1> Jack Good </h1>
-    <p>
-       Jack is a third year CS major in the School of Engineering at UVa. He came up with the idea for this website and
-        and implemented it along side Brandie Young. Jack is interested in backend design, app development, and statistics.
-    </p>
-{% load static %}
-    <a href="{% static "blog/static/blog/BrandieYoungResume.pdf" %}"> Brandie Young </a>
-    <p>
-        Brandie is also a third year CS major in the School of Engineering at UVa, minoring in Math and Engineering Business. She
-        was her high school Valedictorian earning her a University Achievement scholarship at UVa. She is currently an
-        intern for Bank of America. Her interests include backend design and cybersecurity.
-    </p>
+    <div class="container">
+      <div class="row">
+          <h4> Jack Good </h4>
+        <div class="col-sm-4">
+          <a href="https://www.linkedin.com/in/jack-good21">
+          <img src="/media/logo.PNG" height="25" width="25">
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <p> Jack is a third year CS major in the School of Engineering at UVa. He came up with the idea for this website and
+             and implemented it along side Brandie Young. Jack is interested in backend design, app development, and statistics.
+            </p>
+
+          </div>
+          <div class="col col-lg-2">
+            <div class="media">
+              <img class="rounded-circle account-img" src="/media/goodprof.jpeg" width="250" height="250">
+            </div>
+          </div>
+        </div>
+      </div>
+<div class="container">
+  <div class="row">
+      <h4> Brandie Young </h4>
+    <div class="col-sm-4">
+      <a href="https://www.linkedin.com/in/brandie-young">
+      <img src="/media/logo.PNG" height="25" width="25">
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <div class="media">
+        <img class="rounded-circle account-img" src="/media/brandie.jpg" width="250" height="250">
+      </div>
+    </div>
+    <div class="col-9">
+      <p>
+              Brandie is also a third year CS major in the School of Engineering at UVa, minoring in Math and Engineering Business. She
+              was her high school Valedictorian earning her a University Achievement scholarship at UVa. She is currently an
+              intern for Bank of America. Her interests include backend design and cybersecurity.
+      </p>
+
+    </div>
+  </div>
+</div>
+
+
 {% endblock content %}

@@ -1,0 +1,21 @@
+body {
+  background: url(/media/home.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  height:100%;
+  width:100%;
+  color: #333333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: white;
+}
+
+
+
+.display-4:hover {
+  color: 	#808080;
+  text-decoration: none;
+}

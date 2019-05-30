@@ -1,12 +1,10 @@
 {% extends "blog/home.html" %}
 {% block content2 %}
-{% for image in image_url %}
-<img src={{image}} height="400" width="400">
-{% endfor %}
-{% if language %}
-<h1> Language: </h1>
-{{ language}}
-{% endif %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10">
+
+
 {% if keywords %}
 <h2> Key Phrases: </h2>
 {% for k,v in keywords.items %}
@@ -15,6 +13,33 @@
 {% endfor %}
 {% endif %}
 
+    {% if concepts %}
+<h3> Themes: </h3>
+<!-- < class="list-group"> -->
+{% for k,v in concepts.items %}
+<a href = {{v}} class="list-group-item">{{k}} </a>
+ {% endfor %}
+{% endif %}
+{% if first_sentences %}
+<h4> Topic Sentences of Paragraphs: </h4>
+{% for sent in first_sentences %}
+    <li class="list-group-item">{{sent}}</li> </ul>
+{% endfor %}
+{% endif %}
+<h4> Emotion: </h4>
+ {% for k, v in emotions.items %}
+    <li class="list-group-item">{{k}} : {{v}}</li> </ul>
+{% endfor %}
+    </div>
+
+    <div class="col-md-2">
+        {% if language %}
+<h1> Language: </h1>
+{{ language}}
+        {% endif %}
+{% for image in image_url %}
+<img src={{image}} width="400" height={{height}}>
+{% endfor %}
 {% if people %}
 <h3> People: </h3>
 {% for p in people %}
@@ -33,22 +58,14 @@
 <li class="list-group-item">{{o}}</li> </ul>
 {% endfor %}
 {% endif %}
-{% if concepts %}
-<h3> Themes: </h3>
-<!-- < class="list-group"> -->
-{% for k,v in concepts.items %}
-<a href = {{v}} class="list-group-item">{{k}} </a>
- {% endfor %}
-{% endif %}
-{% if first_sentences %}
-<h4> Topic Sentences of Paragraphs: </h4>
-{% for sent in first_sentences %}
-    <li class="list-group-item">{{sent}}</li> </ul>
-{% endfor %}
-{% endif %}
-<h4> Emotion: </h4>
- {% for k, v in emotions.items %}
-    <li class="list-group-item">{{k}} : {{v}}</li> </ul>
-{% endfor %}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
 
 {% endblock content2 %}

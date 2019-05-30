@@ -2,12 +2,14 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import QueryForm
 import json
+import urllib.request
 from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 import Features, EntitiesOptions, KeywordsOptions, ConceptsOptions, EmotionOptions
 from .languages import ISO639_2
 from urllib.request import urlopen
 from azure.cognitiveservices.search.imagesearch import ImageSearchAPI
 from msrest.authentication import CognitiveServicesCredentials
+from PIL import Image
 
 def home(request):
 
@@ -109,7 +111,11 @@ def home(request):
             else:
                 image_url.append("")
 
-
+            height = []
+            width = []
+            image = Image.open(urllib.request.urlopen(image_url[0]))
+            w, h = image.size
+            height.append(400*h/w)
 
             final_form= {"language":expanded_lang,
                          "keywords":words,
@@ -119,7 +125,8 @@ def home(request):
                          "emotions":emotions,
                          "people": people,
                          "places": places,
-                         "orgs": org}
+                         "orgs": org,
+                         "height": height}
             print(form)
                 # process the data in form.cleaned_data as required
                 # ...

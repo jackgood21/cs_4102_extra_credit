@@ -2,62 +2,131 @@
 {% block content2 %}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-9">
 
 
 {% if keywords %}
-<h2> Key Phrases: </h2>
+<h2 > Key Phrases: </h2>
+<ul class="list-group list-group-flush">
+  <li class ="list-group-item-light">
+  <ul class="list-unstyled">
+    <ul>
 {% for k,v in keywords.items %}
-<ul class="list-group">
-<li class="list-group-item">{{v}}</li> </ul>
+<li> {{v}}</li>
 {% endfor %}
+ </ul>
+ </ul>
+ </li>
+ </ul>
 {% endif %}
 
     {% if concepts %}
 <h2> Themes: </h2>
-<!-- < class="list-group"> -->
+<ul class="list-group list-group-flush">
+  <li class ="list-group-item-light">
+  <ul class="list-unstyled">
+    <ul>
 {% for k,v in concepts.items %}
-<a href = {{v}} class="list-group-item">{{k}} </a>
+<li>
+<a href = {{v}}>{{k}} </a>
+ </li>
  {% endfor %}
+
+</ul>
+</ul>
+</li>
+</ul>
 {% endif %}
 {% if first_sentences %}
 <h2> Topic Sentences of Paragraphs: </h2>
+<ul class="list-group list-group-flush">
+  <li class ="list-group-item-light">
+  <ul class="list-unstyled">
+    <ul>
 {% for sent in first_sentences %}
-    <li class="list-group-item">{{sent}}</li> </ul>
+    <li>{{sent}}</li>
 {% endfor %}
+</ul>
+</ul>
+</li>
+</ul>
 {% endif %}
-
 <h2> Tone: </h2>
+<ul class="list-group list-group-flush">
+  <li class ="list-group-item-light">
+  <ul class="list-unstyled">
+    <ul>
+      <dl class="row">
  {% for k, v in emotions.items %}
-    <li class="list-group-item">{{k}} : {{v}}</li> </ul>
+ <dt class="col-sm-3">{{k}}</dt>
+  <dd class="col-sm-9">{{v}}</dd>
 {% endfor %}
+
+</dl>
+</ul>
+</ul>
+</li>
+</ul>
     </div>
 
-    <div class="col-md-2">
+    <div class="col-md-3">
         {% if language %}
 <h2> Language: </h2>
-{{ language}}
+<ul class="list-group list-group-flush">
+  <li class ="list-group-item-light">
+  <ul class="list-unstyled">
+    <ul>
+          <li>{{ language}}</li>
+
+        </ul>
+        </ul>
+        </li>
+        </ul>
         {% endif %}
 {% for image in image_url %}
 <img src={{image}} width="400" height={{height}}>
 {% endfor %}
 {% if people %}
-<h3> People: </h3>
+<h2> People: </h2>
+<ul class="list-group list-group-flush">
+  <li class ="list-group-item-light">
+  <ul class="list-unstyled">
+    <ul>
 {% for p in people %}
-<li class="list-group-item">{{p}}</li> </ul>
+<li>{{p}}</li>
 {% endfor %}
+</ul>
+</ul>
+</li>
+</ul>
 {% endif %}
 {% if places %}
-<h3> Places: </h3>
+<h2> Places: </h2>
+<ul class="list-group list-group-flush">
+  <li class ="list-group-item-light">
+  <ul class="list-unstyled">
+    <ul>
 {% for pl in places %}
-<li class="list-group-item">{{pl}}</li> </ul>
+<li>{{pl}}</li>
 {% endfor %}
+</ul>
+</ul>
+</li>
+</ul>
 {% endif %}
 {% if orgs %}
 <h3> Organizations: </h3>
+<ul class="list-group list-group-flush">
+  <li class ="list-group-item-light">
+  <ul class="list-unstyled">
+    <ul>
 {% for o in orgs %}
-<li class="list-group-item">{{o}}</li> </ul>
+<li>{{o}}</li>
 {% endfor %}
+</ul>
+</ul>
+</li>
+</ul>
 {% endif %}
     </div>
   </div>

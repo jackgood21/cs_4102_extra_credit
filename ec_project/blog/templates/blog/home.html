@@ -3,13 +3,13 @@
 {% block content %}
     {% if form != None %}
     <h1 class="display-1">Reading quick</h1>
-    <h1 class="display-4" style="color:white; text-indent: 100px;"> a faster way to learn
+    <h1 style="color:white; text-indent: 100px;"> a faster way to learn
 </p>
     <legend class="border-bottom mb-4"></legend>
     <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="btn btn-outline-warning">Analyze</button>
+    <button type="submit" class="btn btn-primary">Analyze</button>
     </form>
     {% else %}
     {% block content2 %}{% endblock content2 %}

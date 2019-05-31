@@ -2,14 +2,39 @@
 {% load crispy_forms_tags %}
 {% block content %}
     {% if form != None %}
-    <h1 class="display-1">Reading quick</h1>
-    <h1 style="color:white; text-indent: 100px;"> a faster way to learn
-</p>
+
+
+        <h1 class="display-1">Reading quick</h1> </div> </div>
+
+    <h1 style="color:#ff531a; text-indent: 100px;"> a faster way to learn </h1>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+
     <legend class="border-bottom mb-4"></legend>
     <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit" class="btn btn-primary">Analyze</button>
+    </div>
+
+          <div class="col-md-4">
+                <img src="/media/info.PNG" height="40" width="40">
+
+                  <h4 style="color:white"> Choose Plaintext or URL from the drop-down and enter content in the text box.
+                  Then, click Analyze to begin reading! </h4>
+              <h4 style="color:white"> All languages supported. </h4>
+               </h5>
+
+
+    </div>
+
+    </div>
+    </div>
+
+
+
     </form>
     {% else %}
     {% block content2 %}{% endblock content2 %}

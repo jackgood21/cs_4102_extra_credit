@@ -69,9 +69,7 @@ def home(request):
             lang = form["language"]
             expanded_lang = ISO639_2[lang]
             keywords = form["keywords"]
-            print(form["emotion"])
             emotions = form["emotion"]["document"]["emotion"]
-            print ("***")
             for k,v in emotions.items():
                 if emotions[k] >= 0.10:
                     emotions[k] = str(v*100)[0:2]+"%"
@@ -90,7 +88,6 @@ def home(request):
             people = []
             places =[]
             org =[]
-            print(entities)
             for e in entities:
                 if e["type"] == "Location":
                     places.append(e["text"])
@@ -98,7 +95,6 @@ def home(request):
                     people.append(e["text"])
                 if e["type"] == "Organization":
                     org.append(e["text"])
-            print(people)
             subscription_key = "97696713541a4d698050fe383f301c93"
             search_term = words[0]
             client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
@@ -127,7 +123,6 @@ def home(request):
                          "places": places,
                          "orgs": org,
                          "height": height}
-            print(form)
                 # process the data in form.cleaned_data as required
                 # ...
                 # redirect to a new URL:

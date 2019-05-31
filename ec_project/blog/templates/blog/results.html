@@ -14,19 +14,19 @@
 {% endif %}
 
     {% if concepts %}
-<h3> Themes: </h3>
+<h2> Themes: </h2>
 <!-- < class="list-group"> -->
 {% for k,v in concepts.items %}
 <a href = {{v}} class="list-group-item">{{k}} </a>
  {% endfor %}
 {% endif %}
 {% if first_sentences %}
-<h4> Topic Sentences of Paragraphs: </h4>
+<h2> Topic Sentences of Paragraphs: </h2>
 {% for sent in first_sentences %}
     <li class="list-group-item">{{sent}}</li> </ul>
 {% endfor %}
 {% endif %}
-<h4> Emotion: </h4>
+<h2> Emotion: </h2>
  {% for k, v in emotions.items %}
     <li class="list-group-item">{{k}} : {{v}}</li> </ul>
 {% endfor %}
@@ -34,7 +34,7 @@
 
     <div class="col-md-2">
         {% if language %}
-<h1> Language: </h1>
+<h2> Language: </h2>
 {{ language}}
         {% endif %}
 {% for image in image_url %}

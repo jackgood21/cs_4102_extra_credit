@@ -95,7 +95,7 @@ def home(request):
                     people.append(e["text"])
                 if e["type"] == "Organization":
                     org.append(e["text"])
-            subscription_key = "97696713541a4d698050fe383f301c93"
+            subscription_key = "380c79b8a61d4f97a08c2cb48993c569"
             search_term = words[0]
             client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
             image_results = client.images.search(query=search_term)

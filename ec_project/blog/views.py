@@ -69,12 +69,16 @@ def home(request):
             lang = form["language"]
             expanded_lang = ISO639_2[lang]
             keywords = form["keywords"]
-            emotions = form["emotion"]["document"]["emotion"]
-            for k,v in emotions.items():
-                if emotions[k] >= 0.10:
-                    emotions[k] = str(v*100)[0:2]+"%"
-                else:
-                    emotions[k] = str(v*100)[0:1]+"%"
+            emotions = {}
+            if expanded_lang == "English":
+                emotions = form["emotion"]["document"]["emotion"]
+                for k,v in emotions.items():
+                    if emotions[k] >= 0.10:
+                        emotions[k] = str(v*100)[0:2]+"%"
+                    else:
+                        emotions[k] = str(v*100)[0:1]+"%"
+            else:
+                emotions = None
             words = {}
             count = 0
             for keyword in keywords:
@@ -95,7 +99,7 @@ def home(request):
                     people.append(e["text"])
                 if e["type"] == "Organization":
                     org.append(e["text"])
-            subscription_key = "380c79b8a61d4f97a08c2cb48993c569"
+            subscription_key = "f85c6c69245e45cdac3a65408bf362ed"
             search_term = words[0]
             client = ImageSearchAPI(CognitiveServicesCredentials(subscription_key))
             image_results = client.images.search(query=search_term)
